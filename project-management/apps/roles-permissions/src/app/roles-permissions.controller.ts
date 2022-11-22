@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 
 import { RolesPermissionsService } from './roles-permissions.service'
 
-@Controller('roles-permissions')
+@Controller()
 export class RolesPermissionsController {
   constructor(private readonly rolesPermissionsService: RolesPermissionsService) {}
 
