@@ -1,22 +1,22 @@
 import { Test } from '@nestjs/testing';
 
-import { AccountService } from './roles-permissions.service';
+import { RolesPermissionsService } from './roles-permissions.service';
 
 describe('AppService', () => {
-  let service: AccountService;
+  let service: RolesPermissionsService;
 
   beforeAll(async () => {
     const app = await Test.createTestingModule({
-      providers: [AccountService],
+      providers: [RolesPermissionsService],
     }).compile();
 
-    service = app.get<AccountService>(AccountService);
+    service = app.get<RolesPermissionsService>(RolesPermissionsService);
   });
 
   describe('getData', () => {
-    it('should return "Welcome to project-management!"', () => {
+    it('should return "Welcome to Roles & Permissions Module!"', () => {
       expect(service.getData()).toEqual({
-        message: 'Welcome to project-management!',
+        message: 'Welcome to Roles & Permissions Module!',
       });
     });
   });

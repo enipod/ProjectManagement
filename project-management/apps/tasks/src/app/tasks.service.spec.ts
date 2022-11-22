@@ -1,22 +1,22 @@
 import { Test } from '@nestjs/testing';
 
-import { AccountService } from './tasks.service';
+import { TasksService } from './tasks.service';
 
 describe('AppService', () => {
-  let service: AccountService;
+  let service: TasksService;
 
   beforeAll(async () => {
     const app = await Test.createTestingModule({
-      providers: [AccountService],
+      providers: [TasksService],
     }).compile();
 
-    service = app.get<AccountService>(AccountService);
+    service = app.get<TasksService>(TasksService);
   });
 
   describe('getData', () => {
-    it('should return "Welcome to project-management!"', () => {
+    it('should return "Welcome to Tasks Module!"', () => {
       expect(service.getData()).toEqual({
-        message: 'Welcome to project-management!',
+        message: 'Welcome to Tasks Module!',
       });
     });
   });

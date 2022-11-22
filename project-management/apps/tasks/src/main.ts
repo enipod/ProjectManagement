@@ -10,7 +10,7 @@ import { TasksModule } from './app/tasks.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(TasksModule);
-  const port = process.env.PORT || 3334;
+  const port = process.env.PORT || 3338;
   const globalPrefix = 'tasks';
   app.setGlobalPrefix(globalPrefix);
   await app.listen(port);

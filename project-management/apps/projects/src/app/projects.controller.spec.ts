@@ -14,10 +14,10 @@ describe('AppController', () => {
   });
 
   describe('getData', () => {
-    it('should return "Welcome to project-management!"', () => {
+    it('should return "Welcome to Projects Module!"', () => {
       const appController = app.get<ProjectsController>(ProjectsController);
       expect(appController.getData()).toEqual({
-        message: 'Welcome to project-management!',
+        message: 'Welcome to Projects Module!',
       });
     });
   });
