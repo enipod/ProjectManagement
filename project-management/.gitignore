@@ -8,6 +8,9 @@ tmp
 # dependencies
 node_modules
 
+# env
+project-management/apps/projects/src/environments/environment.ts
+
 # IDEs and editors
 /.idea
 .project
