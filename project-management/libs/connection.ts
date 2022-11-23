@@ -1,5 +1,7 @@
 import { DataSource } from 'typeorm';
-import { environment } from '../environments/environment';
+import { Project } from '../apps/projects/src/entities';
+import { Account } from '../apps/accounts/src/entities';
+import { environment } from '../apps/projects/src/environments/environment';
 const url = `mongodb+srv://${environment.MONGO_USERNAME}:${environment.MONGO_PASSWORD}@${environment.MONGO_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`;
 
 const connectDB = new DataSource({
@@ -7,7 +9,7 @@ const connectDB = new DataSource({
   url,
   logging: false,
   database: 'ProjectManagement',
-  entities: [],
+  entities: [Project, Account],
   migrations: [],
   subscribers: [],
 });

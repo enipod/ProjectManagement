@@ -2,9 +2,10 @@ import { Entity, Column, ObjectIdColumn } from 'typeorm';
 import { ObjectId } from 'mongodb';
 
 import { ProjectSpace } from './project-space.schema';
+import datetime from '../../../../libs/getCurrentDate';
 
 @Entity()
-export class ProductVariant {
+export class Project {
   @ObjectIdColumn()
   _id: string;
 
@@ -23,7 +24,7 @@ export class ProductVariant {
   description!: string;
 
   @Column({
-    name: 'owner',
+    name: 'ownerId',
     type: String,
     nullable: false,
   })
@@ -65,14 +66,6 @@ export class ProductVariant {
     name: 'date',
     type: String,
     nullable: false,
-    default: () => {
-      const today = new Date();
-      const dd = String(today.getDate()).padStart(2, '0');
-      const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      const yyyy = today.getFullYear();
-
-      return mm + '/' + dd + '/' + yyyy;
-    },
   })
   date!: string;
 
@@ -86,7 +79,8 @@ export class ProductVariant {
     assets: Array<string> = [],
     participants: Array<ObjectId> = [ownerId],
     payments: Array<ObjectId> = [],
-    spaces: Array<ProjectSpace> = [new ProjectSpace()]
+    spaces: Array<ProjectSpace> = [new ProjectSpace(ownerId)],
+    date: string = datetime
   ) {
     this.name = name;
     this.description = description;
@@ -95,5 +89,6 @@ export class ProductVariant {
     this.participants = participants;
     this.payments = payments;
     this.spaces = spaces;
+    this.date = date;
   }
 }

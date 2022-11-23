@@ -21,6 +21,12 @@ export class ProjectSpace {
   description!: string;
 
   @Column({
+    name: 'owner',
+    nullable: false,
+  })
+  owner!: ObjectId;
+
+  @Column({
     name: 'participants',
     default: [],
     nullable: false,
@@ -35,12 +41,14 @@ export class ProjectSpace {
   assets!: Array<string>;
 
   constructor(
+    owner: ObjectId,
     assets: Array<string> = [],
     name = 'Space',
     description = 'This projects main space.',
-    participants: Array<ObjectId> = []
+    participants: Array<ObjectId> = [owner]
   ) {
     this._id = new ObjectId();
+    this.owner = owner;
     this.name = name;
     this.description = description;
     this.participants = participants;
