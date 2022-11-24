@@ -7,7 +7,7 @@ import datetime from '../../../../libs/getCurrentDate';
 @Entity()
 export class Project {
   @ObjectIdColumn()
-  _id: string;
+  _id: ObjectId;
 
   @Column({
     name: 'name',

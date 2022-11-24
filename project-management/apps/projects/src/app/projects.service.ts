@@ -13,6 +13,14 @@ export class ProjectsService {
     this.connection = connectDB;
   }
 
+  async getProject(id: string) {
+    const results = await this.connection.manager.findOne(Project, {
+      where: { _id: new ObjectId(id) as unknown as string },
+    });
+
+    return new ApiResponse(true, results);
+  }
+
   async getProjects() {
     const results = await this.connection.getMongoRepository(Project).find();
 
@@ -33,5 +41,17 @@ export class ProjectsService {
     });
 
     return new ApiResponse(true, data);
+  }
+
+  async updateProject(id: ObjectId, args: Project) {
+    const result = await this.connection.manager.update(
+      Project,
+      { _id: new ObjectId(id) },
+      {
+        ...args,
+      }
+    );
+
+    return new ApiResponse(true, result);
   }
 }

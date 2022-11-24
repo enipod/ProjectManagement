@@ -12,6 +12,14 @@ export class AccountService {
     this.connection = connection;
   }
 
+  async getAccount(id: string) {
+    const results = await this.connection.manager.findOne(Account, {
+      where: { _id: new ObjectId(id) as unknown as string },
+    });
+
+    return new ApiResponse(true, results);
+  }
+
   async getAccounts() {
     const results = await this.connection.getMongoRepository(Account).find();
 
@@ -36,5 +44,17 @@ export class AccountService {
     });
 
     return new ApiResponse(true, data);
+  }
+
+  async updateAccount(id: ObjectId, args: Account) {
+    const result = await this.connection.manager.update(
+      Account,
+      { _id: new ObjectId(id) },
+      {
+        ...args,
+      }
+    );
+
+    return new ApiResponse(true, result);
   }
 }
